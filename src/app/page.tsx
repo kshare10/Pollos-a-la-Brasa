@@ -10,7 +10,6 @@ export default function Home() {
       nameEn: "Rotisserie Chicken",
       description: "Our signature Peruvian-style rotisserie chicken, marinated with aromatic spices and slow-roasted to golden perfection. Served with your choice of two sides.",
       price: "16.35",
-      emoji: "🍗",
       tag: "Signature Dish",
     },
     {
@@ -18,7 +17,6 @@ export default function Home() {
       nameEn: "Sautéed Loin",
       description: "Classic Peruvian stir-fry with tender beef, onions, and tomatoes in a savory soy sauce, served with rice and crispy fries.",
       price: "16.50",
-      emoji: "🥩",
       tag: "Chef's Pick",
     },
     {
@@ -26,7 +24,6 @@ export default function Home() {
       nameEn: "Shrimp Ceviche",
       description: "Fresh shrimp marinated in citrus lime juice with a blend of Peruvian spices. A refreshing, zesty appetizer.",
       price: "19.50",
-      emoji: "🦐",
       tag: "Fan Favorite",
     },
   ];
@@ -59,11 +56,10 @@ export default function Home() {
             {featuredDishes.map((dish, idx) => (
               <div
                 key={idx}
-                className="glass-light rounded-2xl p-8 group hover:border-[var(--color-gold)]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[var(--color-accent)]/10"
+                className="glass-light rounded-2xl p-8 group hover:border-[var(--color-gold)]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[var(--color-accent)]/10 flex flex-col"
               >
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-4xl">{dish.emoji}</span>
-                  <span className="px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-semibold bg-[var(--color-accent)]/10 text-[var(--color-accent-light)] border border-[var(--color-accent)]/20">
+                <div className="flex justify-center mb-6">
+                  <span className="px-4 py-1.5 rounded-full text-xs uppercase tracking-[0.2em] font-bold bg-[var(--color-accent)]/10 text-[var(--color-accent-light)] border border-[var(--color-accent)]/20 shadow-sm">
                     {dish.tag}
                   </span>
                 </div>
@@ -76,7 +72,7 @@ export default function Home() {
                 <p className="text-[var(--color-stone-light)] text-sm mt-4 leading-relaxed">
                   {dish.description}
                 </p>
-                <div className="mt-6 flex items-center justify-between">
+                <div className="mt-auto pt-6 flex items-center justify-between">
                   <span className="font-display text-2xl font-bold text-[var(--color-gold)]">
                     ${dish.price}
                   </span>
@@ -100,7 +96,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="glass rounded-2xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Location */}
-            <div className="text-center md:text-left">
+            <div className="text-center">
               <span className="text-3xl mb-3 block">📍</span>
               <h3 className="font-display text-xl text-white font-bold mb-2">
                 Visit Us
@@ -134,7 +130,7 @@ export default function Home() {
             </div>
 
             {/* Contact */}
-            <div className="text-center md:text-right">
+            <div className="text-center">
               <span className="text-3xl mb-3 block">📞</span>
               <h3 className="font-display text-xl text-white font-bold mb-2">
                 Call Us

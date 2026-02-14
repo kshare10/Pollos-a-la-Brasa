@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import OrderDropdown from "@/components/OrderDropdown";
+import OrderModal from "@/components/OrderModal";
 
 export default function Footer() {
     return (
@@ -106,7 +106,7 @@ export default function Footer() {
                                 </a>
                             </li>
                         </ul>
-                        <OrderDropdown className="btn-primary !py-2.5 !px-5 !text-sm mt-6 w-full" />
+                        <OrderModal className="btn-primary !py-2.5 !px-5 !text-sm mt-6 w-full" />
                     </div>
                 </div>
 

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import OrderDropdown from "@/components/OrderDropdown";
+import OrderModal from "@/components/OrderModal";
 
 const navLinks = [
     { href: "/", label: "Home" },
@@ -16,11 +16,23 @@ const navLinks = [
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [headerOpacity, setHeaderOpacity] = useState(0);
     const pathname = usePathname();
 
     useEffect(() => {
-        const handleScroll = () => setScrolled(window.scrollY > 20);
+        const handleScroll = () => {
+            const scrollY = window.scrollY;
+            setScrolled(scrollY > 20);
+
+            // Calculate opacity for smooth transition over first 50px
+            // Max opacity is 0.95 (to match bg-charcoal/95)
+            const opacity = Math.min(scrollY / 50, 0.95);
+            setHeaderOpacity(opacity);
+        };
+
         window.addEventListener("scroll", handleScroll);
+        // Initial check
+        handleScroll();
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
@@ -30,10 +42,12 @@ export default function Header() {
 
     return (
         <header
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-                ? "glass shadow-lg shadow-black/20"
-                : "bg-transparent"
-                }`}
+            className="fixed top-0 left-0 right-0 z-50 transition-shadow duration-300"
+            style={{
+                backgroundColor: `rgba(28, 28, 28, ${headerOpacity})`, // var(--color-charcoal) is usually #1C1C1C
+                backdropFilter: `blur(${headerOpacity * 10}px)`,
+                boxShadow: scrolled ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" : "none"
+            }}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
@@ -72,7 +86,7 @@ export default function Header() {
                                 )}
                             </Link>
                         ))}
-                        <OrderDropdown className="btn-primary !py-2.5 !px-6 !text-sm" />
+                        <OrderModal className="btn-primary !py-2.5 !px-6 !text-sm" />
                     </nav>
 
                     {/* Mobile Menu Toggle */}
@@ -118,7 +132,7 @@ export default function Header() {
                                 {link.label}
                             </Link>
                         ))}
-                        <OrderDropdown className="btn-primary text-center mt-2 w-full" />
+                        <OrderModal className="btn-primary text-center mt-2 w-full" />
                     </nav>
                 </div>
             </div>

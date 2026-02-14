@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import OrderDropdown from "@/components/OrderDropdown";
+import OrderModal from "@/components/OrderModal";
 
 export const metadata: Metadata = {
     title: "Contact & Location | Pollos a la Brasa Eagle Rock",
@@ -155,7 +155,7 @@ export default function ContactPage() {
                                     Skip the wait — order directly for pickup or delivery
                                 </p>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                                    <OrderDropdown className="btn-primary w-full sm:w-auto" />
+                                    <OrderModal className="btn-primary w-full sm:w-auto" />
                                     <a
                                         href="tel:+13232556322"
                                         className="btn-secondary w-full sm:w-auto justify-center"

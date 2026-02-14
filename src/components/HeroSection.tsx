@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import OrderDropdown from "@/components/OrderDropdown";
+import OrderModal from "@/components/OrderModal";
 
 export default function HeroSection() {
     const [isBouncing, setIsBouncing] = useState(true);
@@ -38,7 +38,7 @@ export default function HeroSection() {
                 style={{ animationDelay: "2s" }}
             />
 
-            <div className="relative z-10 flex-grow flex flex-col justify-center max-w-5xl mx-auto px-4 sm:px-6 text-center pt-24 pb-12 sm:pb-32">
+            <div className="relative z-10 flex-grow flex flex-col justify-center max-w-5xl mx-auto px-4 sm:px-6 text-center pt-32 sm:pt-40 pb-12 sm:pb-32">
                 {/* Logo */}
                 <div className="animate-fadeInUp mb-6">
                     <Image
@@ -93,7 +93,7 @@ export default function HeroSection() {
                     <Link href="/menu" className="btn-primary text-lg">
                         View Our Menu
                     </Link>
-                    <OrderDropdown className="btn-secondary text-lg" />
+                    <OrderModal className="btn-secondary text-lg bg-amber-500/20 hover:bg-amber-500/30 border-amber-500/50 text-amber-100" />
                 </div>
 
                 {/* Food image showcase — 3 circular previews */}
@@ -109,8 +109,8 @@ export default function HeroSection() {
                         },
                         {
                             src: "/images/food2.jpg",
-                            alt: "Empanada",
-                            label: "Empanada",
+                            alt: "Papa Rellena",
+                            label: "Papa Rellena",
                         },
                         {
                             src: "/images/food3.jpg",
@@ -132,7 +132,7 @@ export default function HeroSection() {
                                     sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, 112px"
                                 />
                             </div>
-                            <span className="text-[10px] sm:text-xs text-[var(--color-stone-light)] group-hover:text-[var(--color-gold)] transition-colors uppercase tracking-wider font-medium hidden sm:block">
+                            <span className="text-[10px] sm:text-xs text-[var(--color-stone-light)] group-hover:text-[var(--color-gold)] transition-colors uppercase tracking-wider font-medium mt-1">
                                 {item.label}
                             </span>
                         </Link>
@@ -178,7 +178,7 @@ export default function HeroSection() {
                 onClick={() => {
                     document.getElementById("featured-dishes")?.scrollIntoView({ behavior: "smooth" });
                 }}
-                className={`absolute bottom-32 sm:bottom-24 left-1/2 -translate-x-1/2 z-10 transition-all duration-1000 hover:opacity-80 ${isBouncing ? "animate-bounce" : "opacity-50"}`}
+                className={`absolute bottom-28 sm:bottom-32 left-1/2 -translate-x-1/2 z-10 transition-all duration-1000 hover:opacity-80 hidden sm:block ${isBouncing ? "animate-bounce" : "opacity-50"}`}
                 aria-label="Scroll to featured dishes"
             >
                 <div className="w-6 h-10 rounded-full border-2 border-[var(--color-stone-light)]/50 flex justify-center pt-2">
