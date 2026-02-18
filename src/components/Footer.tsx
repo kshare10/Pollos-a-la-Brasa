@@ -111,13 +111,18 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom bar */}
-                <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-xs text-[var(--color-stone)]">
+                <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p className="text-xs text-[var(--color-stone)] text-center md:text-left">
                         © {new Date().getFullYear()} Pollos a la Brasa · Eagle Rock, Los Angeles
                     </p>
-                    <p className="text-xs text-[var(--color-stone)]">
-                        Authentic Peruvian Cuisine Since 2020
-                    </p>
+                    <div className="flex gap-6 text-xs text-[var(--color-stone)]">
+                        <Link href="/privacy" className="hover:text-[var(--color-gold)] transition-colors">
+                            Privacy Policy
+                        </Link>
+                        <Link href="/terms" className="hover:text-[var(--color-gold)] transition-colors">
+                            Terms & Conditions
+                        </Link>
+                    </div>
                 </div>
             </div>
         </footer>
