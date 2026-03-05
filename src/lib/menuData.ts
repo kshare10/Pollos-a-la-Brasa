@@ -28,7 +28,7 @@ export const menuCategories: MenuCategory[] = [
                 nameEn: "Shrimp Ceviche",
                 description: "Shrimp marinated in lime juice and spices",
                 descriptionEs: "Camarones marinados en jugo de limón y especias",
-                price: 25,
+                price: 19.5,
             },
             {
                 id: 2,
