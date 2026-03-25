@@ -6,12 +6,6 @@ import Link from "next/link";
 import OrderModal from "@/components/OrderModal";
 
 export default function HeroSection() {
-    const [isBouncing, setIsBouncing] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setIsBouncing(false), 5000);
-        return () => clearTimeout(timer);
-    }, []);
 
     return (
         <section className="relative min-h-screen flex flex-col overflow-hidden">
@@ -172,19 +166,6 @@ export default function HeroSection() {
                     </div>
                 </div>
             </div>
-
-            {/* Scroll indicator */}
-            <button
-                onClick={() => {
-                    document.getElementById("featured-dishes")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className={`absolute bottom-28 sm:bottom-32 left-1/2 -translate-x-1/2 z-10 transition-all duration-1000 hover:opacity-80 hidden sm:block ${isBouncing ? "animate-bounce" : "opacity-50"}`}
-                aria-label="Scroll to featured dishes"
-            >
-                <div className="w-6 h-10 rounded-full border-2 border-[var(--color-stone-light)]/50 flex justify-center pt-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-gold)] animate-pulse" />
-                </div>
-            </button>
         </section>
     );
 }
