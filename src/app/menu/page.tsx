@@ -4,9 +4,19 @@ import { useState, useEffect, useRef } from "react";
 import { menuCategories } from "@/lib/menuData";
 import MenuSection from "@/components/MenuSection";
 import OrderModal from "@/components/OrderModal";
+import PromoModal from "@/components/PromoModal";
 
 export default function MenuPage() {
     const [activeCategory, setActiveCategory] = useState(menuCategories[0].id);
+    const [showPromo, setShowPromo] = useState(false);
+
+    useEffect(() => {
+        const hasSeenPromo = sessionStorage.getItem("hasSeenMenuPromo");
+        if (!hasSeenPromo) {
+            setShowPromo(true);
+            sessionStorage.setItem("hasSeenMenuPromo", "true");
+        }
+    }, []);
 
     const isManualScroll = useRef(false);
 
@@ -106,6 +116,8 @@ export default function MenuPage() {
 
     return (
         <>
+            <PromoModal isOpen={showPromo} onClose={() => setShowPromo(false)} />
+
             {/* Page Header */}
             <section className="pt-28 pb-12 bg-gradient-warm">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

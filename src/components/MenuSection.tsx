@@ -1,5 +1,6 @@
 import type { MenuCategory } from "@/lib/menuData";
 
+
 export default function MenuSection({ category }: { category: MenuCategory }) {
     return (
         <section id={category.id} className="scroll-mt-24">
@@ -31,9 +32,11 @@ export default function MenuSection({ category }: { category: MenuCategory }) {
                                     <h3 className="font-semibold text-white group-hover:text-[var(--color-gold)] transition-colors">
                                         {item.nameEs}
                                     </h3>
-                                    <span className="text-xs text-[var(--color-stone-light)] italic">
-                                        / {item.nameEn}
-                                    </span>
+                                    {item.nameEn && (
+                                        <span className="text-xs text-[var(--color-stone-light)] italic">
+                                            / {item.nameEn}
+                                        </span>
+                                    )}
                                 </div>
                                 {item.description && (
                                     <p className="text-sm text-[var(--color-stone-light)] mt-1 leading-relaxed">
@@ -41,10 +44,24 @@ export default function MenuSection({ category }: { category: MenuCategory }) {
                                     </p>
                                 )}
                             </div>
-                            <div className="flex-shrink-0">
-                                <span className="text-lg font-bold text-[var(--color-gold)] font-display">
-                                    ${item.price.toFixed(2)}{item.uncertainPrice && <span className="text-[var(--color-stone)] text-sm align-super">*</span>}
-                                </span>
+                            <div className="flex-shrink-0 text-right flex flex-col items-end gap-1">
+                                {item.prices ? (
+                                    item.prices.map((p, idx) => (
+                                        <div key={idx} className="flex items-baseline justify-end gap-2">
+                                            <span className="text-xs text-[var(--color-stone-light)] font-medium uppercase tracking-wider">
+                                                {p.size}
+                                            </span>
+                                            <span className="text-base font-bold text-[var(--color-gold)] font-display">
+                                                ${p.price.toFixed(2)}
+                                            </span>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <span className="text-lg font-bold text-[var(--color-gold)] font-display">
+                                        {item.price !== undefined ? `$${item.price.toFixed(2)}` : ""}
+                                        {item.uncertainPrice && <span className="text-[var(--color-stone)] text-sm align-super">*</span>}
+                                    </span>
+                                )}
                             </div>
                         </div>
                     </div>

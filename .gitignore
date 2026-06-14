@@ -43,3 +43,6 @@ next-env.d.ts
 # Claude and Reproducibility
 CLAUDE.md
 Reproducibility.md
+
+# Excel Temp Files
+~$*
