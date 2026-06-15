@@ -92,11 +92,11 @@ export default function PromoModal({ isOpen, onClose }: PromoModalProps) {
                 {/* Offer Highlight Box */}
                 <div className="w-full bg-gradient-to-br from-[var(--color-primary-dark)]/40 to-black/20 border border-[var(--color-primary)]/30 rounded-xl p-5 sm:p-6 mb-6">
                     <p className="text-lg sm:text-xl font-bold text-white leading-snug">
-                        "Buy two chickens with combination, get a 2-liter drink free!"
+                        Buy two chicken combos, get a 2-liter drink free!
                     </p>
                     <div className="mt-2 h-[1px] bg-gradient-to-r from-transparent via-[var(--color-gold)]/30 to-transparent" />
                     <p className="text-xs sm:text-sm text-[var(--color-stone-light)] mt-2 italic">
-                        Compra dos pollos en combo y llévate gratis una bebida de 2 litros.
+                        Compra dos pollos en combo y llévate gratis una bebida de 2 litros!
                     </p>
                 </div>
 
