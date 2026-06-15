@@ -105,21 +105,21 @@ export const menuCategories: MenuCategory[] = [
             {
                 id: 12,
                 nameEs: "1/4 de Pollo",
-                nameEn: "Quarter Chicken",
+                nameEn: "Quarter Chicken Combo",
                 descriptionEs: "Un cuarto de pollo a la brasa (solo pollo)",
                 price: 10.5,
             },
             {
                 id: 13,
                 nameEs: "1/2 de Pollo",
-                nameEn: "Half Chicken",
+                nameEn: "Half Chicken Combo",
                 descriptionEs: "Medio pollo a la brasa con 2 acompa\u00f1amientos",
                 price: 14.5,
             },
             {
                 id: 14,
                 nameEs: "1 Pollo Entero",
-                nameEn: "Whole Chicken",
+                nameEn: "Whole Chicken Combo",
                 descriptionEs: "Pollo entero a la brasa con acompa\u00f1amientos",
                 price: 26.0,
             },
@@ -133,6 +133,7 @@ export const menuCategories: MenuCategory[] = [
             {
                 id: 100,
                 nameEs: "1/2  Pollo Solo",
+		nameEn: "Half Chicken Only",
                 price: 9.5,
             },
             {

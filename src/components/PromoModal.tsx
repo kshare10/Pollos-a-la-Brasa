@@ -77,11 +77,8 @@ export default function PromoModal({ isOpen, onClose }: PromoModalProps) {
                     <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider text-[var(--color-gold)] bg-[var(--color-gold)]/10 border border-[var(--color-gold)]/20 animate-pulse-glow">
                         Special Offer · Especial
                     </span>
-                </div>
 
-                {/* Icon display */}
-                <div className="text-4xl mb-4 select-none filter drop-shadow-[0_4px_8px_rgba(217,119,6,0.3)]">
-                    🍗 🥤 🍗
+
                 </div>
 
                 {/* Heading */}
