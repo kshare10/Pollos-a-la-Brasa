@@ -50,6 +50,8 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+      </head>
+      <body className="antialiased min-h-screen flex flex-col">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-8C73DDHRHL"
           strategy="afterInteractive"
@@ -66,8 +68,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className="antialiased min-h-screen flex flex-col">
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
