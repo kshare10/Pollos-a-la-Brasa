@@ -22,6 +22,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.pollosalabrasaca.com"),
   title: "Pollos a la Brasa | Authentic Peruvian Rotisserie Chicken | Eagle Rock, LA",
   description:
     "Pollos a la Brasa serves authentic Peruvian-style rotisserie chicken and traditional dishes in Eagle Rock, Los Angeles. Order online or visit us at 2161 Colorado Blvd.",
@@ -39,8 +40,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Pollos a la Brasa | Eagle Rock, Los Angeles",
     description: "Authentic Peruvian rotisserie chicken and traditional dishes in Eagle Rock.",
-    type: "website",
+    url: "https://www.pollosalabrasaca.com",
+    siteName: "Pollos a la Brasa",
     locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pollos a la Brasa | Authentic Peruvian Rotisserie Chicken | Eagle Rock, LA",
+    description: "Authentic Peruvian rotisserie chicken and traditional dishes in Eagle Rock, Los Angeles.",
   },
 };
 
