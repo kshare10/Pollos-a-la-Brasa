@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 import "./globals.css";
 import Script from "next/script";
 import { Inter, Playfair_Display } from "next/font/google";
@@ -51,7 +52,21 @@ export default function RootLayout({
         <link rel="preconnect" href="https://www.google-analytics.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
       </head>
-      <body className="antialiased min-h-screen flex flex-col">
+      <body className="antialiased min-h-screen flex flex-col relative text-slate-100 selection:bg-amber-500/30 selection:text-amber-200">
+        {/* Global Fixed Machu Picchu Atmospheric Backdrop */}
+        <div className="machu-bg-fixed" aria-hidden="true">
+          <Image
+            src="/images/machu-picchu.jpg"
+            alt="Machu Picchu Peruvian Andes Background"
+            fill
+            priority
+            className="object-cover object-top sm:object-center opacity-85"
+            sizes="100vw"
+            quality={92}
+          />
+          <div className="machu-bg-overlay" />
+        </div>
+
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-8C73DDHRHL"
           strategy="afterInteractive"
@@ -69,7 +84,7 @@ export default function RootLayout({
           }}
         />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1 relative z-10">{children}</main>
         <Footer />
         <script
           type="application/ld+json"
@@ -101,7 +116,13 @@ export default function RootLayout({
               openingHoursSpecification: [
                 {
                   "@type": "OpeningHoursSpecification",
-                  dayOfWeek: ["Monday", "Tuesday", "Thursday", "Friday", "Saturday", "Sunday"],
+                  dayOfWeek: ["Sunday", "Monday", "Tuesday"],
+                  opens: "11:00",
+                  closes: "20:30",
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: ["Thursday", "Friday", "Saturday"],
                   opens: "11:00",
                   closes: "21:00",
                 },
@@ -117,4 +138,3 @@ export default function RootLayout({
     </html>
   );
 }
-

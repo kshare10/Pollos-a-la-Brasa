@@ -24,14 +24,11 @@ export default function Header() {
             const scrollY = window.scrollY;
             setScrolled(scrollY > 20);
 
-            // Calculate opacity for smooth transition over first 50px
-            // Max opacity is 0.95 (to match bg-charcoal/95)
-            const opacity = Math.min(scrollY / 50, 0.95);
+            const opacity = Math.min(scrollY / 50, 0.92);
             setHeaderOpacity(opacity);
         };
 
         window.addEventListener("scroll", handleScroll);
-        // Initial check
         handleScroll();
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
@@ -42,18 +39,19 @@ export default function Header() {
 
     return (
         <header
-            className="fixed top-0 left-0 right-0 z-50 transition-shadow duration-300"
+            className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b"
             style={{
-                backgroundColor: `rgba(28, 28, 28, ${headerOpacity})`, // var(--color-charcoal) is usually #1C1C1C
-                backdropFilter: `blur(${headerOpacity * 10}px)`,
-                boxShadow: scrolled ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)" : "none"
+                backgroundColor: `rgba(9, 12, 18, ${scrolled ? 0.85 : headerOpacity * 0.75})`,
+                backdropFilter: `blur(${Math.max(headerOpacity * 14, 8)}px)`,
+                borderColor: scrolled ? "rgba(245, 158, 11, 0.2)" : "rgba(255, 255, 255, 0.08)",
+                boxShadow: scrolled ? "0 8px 24px -8px rgba(0, 0, 0, 0.6)" : "none"
             }}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3 group">
-                        <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[var(--color-gold)] transition-transform duration-300 group-hover:scale-110">
+                        <div className="relative w-10 h-10 rounded-full overflow-hidden border-2 border-[var(--color-gold)]/80 shadow-md shadow-amber-500/20">
                             <Image
                                 src="/images/updated_logo.png"
                                 alt="Pollos a la Brasa Logo"
@@ -62,9 +60,12 @@ export default function Header() {
                                 sizes="40px"
                             />
                         </div>
-                        <div className="flex flex-col justify-center h-10">
-                            <span className="font-display text-xl sm:text-2xl font-bold text-[var(--color-gold)] leading-none">
+                        <div className="flex flex-col justify-center">
+                            <span className="font-display text-xl sm:text-2xl font-bold text-gradient-gold leading-none">
                                 Pollos a la Brasa
+                            </span>
+                            <span className="text-[10px] sm:text-xs tracking-[0.2em] text-slate-300 uppercase font-medium mt-0.5">
+                                Peruvian Cuisine · Eagle Rock
                             </span>
                         </div>
                     </Link>
@@ -75,14 +76,14 @@ export default function Header() {
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className={`relative text-sm font-medium tracking-wide uppercase transition-colors duration-300 ${pathname === link.href
+                                className={`relative text-sm font-semibold tracking-wider uppercase transition-colors duration-200 ${pathname === link.href
                                     ? "text-[var(--color-gold)]"
-                                    : "text-[var(--color-stone-light)] hover:text-white"
+                                    : "text-slate-200 hover:text-white"
                                     }`}
                             >
                                 {link.label}
                                 {pathname === link.href && (
-                                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-gold rounded-full" />
+                                    <span className="absolute -bottom-1.5 left-0 right-0 h-0.5 bg-gradient-gold rounded-full shadow-sm shadow-amber-400" />
                                 )}
                             </Link>
                         ))}
@@ -92,7 +93,7 @@ export default function Header() {
                     {/* Mobile Menu Toggle */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="md:hidden relative w-10 h-10 flex items-center justify-center"
+                        className="md:hidden relative w-10 h-10 flex items-center justify-center rounded-lg bg-white/5 border border-white/10"
                         aria-label="Toggle menu"
                     >
                         <div className="flex flex-col gap-1.5">
@@ -115,24 +116,26 @@ export default function Header() {
 
             {/* Mobile Menu */}
             <div
-                className={`md:hidden transition-all duration-500 overflow-hidden ${isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
+                className={`md:hidden transition-all duration-300 overflow-hidden ${isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
                     }`}
             >
-                <div className="glass bg-[var(--color-charcoal)]/95 backdrop-blur-xl border-t border-[var(--color-accent)]/20 px-4 py-6 shadow-2xl">
-                    <nav className="flex flex-col gap-4">
+                <div className="glass bg-[#090C12]/95 backdrop-blur-2xl border-t border-[var(--color-accent)]/25 px-5 py-6 shadow-2xl">
+                    <nav className="flex flex-col gap-3">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.href}
                                 href={link.href}
-                                className={`text-lg font-medium py-2 border-b border-white/5 transition-colors ${pathname === link.href
-                                    ? "text-[var(--color-gold)]"
-                                    : "text-white/80 hover:text-white"
+                                className={`text-base font-semibold py-2.5 px-3 rounded-lg border-b border-white/5 transition-colors ${pathname === link.href
+                                    ? "text-[var(--color-gold)] bg-amber-500/10"
+                                    : "text-slate-200 hover:text-white hover:bg-white/5"
                                     }`}
                             >
                                 {link.label}
                             </Link>
                         ))}
-                        <OrderModal className="btn-primary text-center mt-2 w-full" />
+                        <div className="pt-2">
+                            <OrderModal className="btn-primary text-center w-full !py-3 !text-sm" />
+                        </div>
                     </nav>
                 </div>
             </div>

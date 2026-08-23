@@ -3,28 +3,28 @@ import { menuCategories } from "@/lib/menuData";
 import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
-  // Pick a few featured dishes to highlight
+  // Featured dishes
   const featuredDishes = [
     {
       nameEs: "Pollo a la Brasa",
       nameEn: "Rotisserie Chicken",
-      description: "Our signature Peruvian-style rotisserie chicken, marinated with aromatic spices and slow-roasted to golden perfection. Served with your choice of two sides.",
+      description: "Our signature Peruvian-style rotisserie chicken, marinated with aromatic Andean spices and slow-roasted to golden perfection. Served with your choice of two sides.",
       price: "14.50",
       tag: "Signature Dish",
     },
     {
       nameEs: "Lomo Saltado",
-      nameEn: "Sautéed Loin",
-      description: "Classic Peruvian stir-fry with tender beef, onions, and tomatoes in a savory soy sauce, served with rice and crispy fries.",
+      nameEn: "Sautéed Beef Loin",
+      description: "Classic Peruvian stir-fry with tender beef strips, red onions, and ripe tomatoes in a rich savory soy reduction, served over white rice and crispy fries.",
       price: "14.50",
-      tag: "Chef's Pick",
+      tag: "Chef's Favorite",
     },
     {
       nameEs: "Ceviche de Camarones",
       nameEn: "Shrimp Ceviche",
-      description: "Fresh shrimp marinated in citrus lime juice with a blend of Peruvian spices. A refreshing, zesty appetizer.",
+      description: "Fresh tender shrimp marinated in zesty fresh lime juice, tossed with red onion, cilantro, and Peruvian rocoto chilies. A refreshing classic.",
       price: "16.99",
-      tag: "Fan Favorite",
+      tag: "Coastal Classic",
     },
   ];
 
@@ -40,47 +40,56 @@ export default function Home() {
       {/* ═══════════════════════════════════════
           FEATURED DISHES
           ═══════════════════════════════════════ */}
-      <section id="featured-dishes" className="py-20 bg-[var(--section-bg)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="featured-dishes" className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-14">
-            <span className="text-[var(--color-accent)] text-sm uppercase tracking-[0.2em] font-medium">
-              From Our Kitchen
+            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-gold-light)] bg-amber-500/10 border border-amber-500/25 mb-3 shadow-sm">
+              Peruvian Specialties
             </span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold text-white mt-2">
+            <h2 className="font-display text-3xl sm:text-5xl font-bold text-white tracking-tight">
               Featured Dishes
             </h2>
-            <div className="mt-4 mx-auto h-1 w-20 bg-gradient-gold rounded-full" />
+            <div className="mt-3.5 mx-auto h-1 w-20 bg-gradient-gold rounded-full" />
+            <p className="text-slate-300 max-w-xl mx-auto mt-3.5 text-sm sm:text-base">
+              Handcrafted with authentic Peruvian ingredients and time-honored recipes.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {featuredDishes.map((dish, idx) => (
               <div
                 key={idx}
-                className="glass-light rounded-2xl p-8 group hover:border-[var(--color-gold)]/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-[var(--color-accent)]/10 flex flex-col"
+                className="glass-card rounded-2xl p-7 sm:p-8 group flex flex-col justify-between relative overflow-hidden"
               >
-                <div className="flex justify-center mb-6">
-                  <span className="px-4 py-1.5 rounded-full text-xs uppercase tracking-[0.2em] font-bold bg-[var(--color-accent)]/10 text-[var(--color-accent-light)] border border-[var(--color-accent)]/20 shadow-sm">
-                    {dish.tag}
-                  </span>
+                {/* Subtle top card glow */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-amber-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                <div>
+                  <div className="flex justify-between items-center mb-5">
+                    <span className="px-3.5 py-1 rounded-full text-[11px] uppercase tracking-[0.15em] font-bold bg-amber-500/15 text-[var(--color-gold-light)] border border-amber-500/30 shadow-sm">
+                      {dish.tag}
+                    </span>
+                    <span className="font-display text-2xl font-bold text-[var(--color-gold)]">
+                      ${dish.price}
+                    </span>
+                  </div>
+                  <h3 className="font-display text-2xl text-white font-bold group-hover:text-[var(--color-gold-light)] transition-colors">
+                    {dish.nameEs}
+                  </h3>
+                  <p className="text-xs text-amber-200/80 uppercase tracking-widest mt-1 font-semibold">
+                    {dish.nameEn}
+                  </p>
+                  <p className="text-slate-300 text-sm mt-3.5 leading-relaxed font-normal">
+                    {dish.description}
+                  </p>
                 </div>
-                <h3 className="font-display text-2xl text-white font-bold group-hover:text-[var(--color-gold)] transition-colors">
-                  {dish.nameEs}
-                </h3>
-                <p className="text-xs text-[var(--color-stone-light)] uppercase tracking-widest mt-1">
-                  {dish.nameEn}
-                </p>
-                <p className="text-[var(--color-stone-light)] text-sm mt-4 leading-relaxed">
-                  {dish.description}
-                </p>
-                <div className="mt-auto pt-6 flex items-center justify-between">
-                  <span className="font-display text-2xl font-bold text-[var(--color-gold)]">
-                    ${dish.price}
-                  </span>
+
+                <div className="pt-5 mt-5 border-t border-white/10 flex items-center justify-end">
                   <Link
                     href="/menu"
-                    className="text-sm text-[var(--color-accent-light)] hover:text-white transition-colors"
+                    className="text-sm font-semibold text-[var(--color-gold)] hover:text-white flex items-center gap-1 transition-colors"
                   >
-                    See full menu →
+                    View on menu <span className="group-hover:translate-x-0.5 transition-transform">→</span>
                   </Link>
                 </div>
               </div>
@@ -90,59 +99,65 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════
-          INFO STRIP
+          INFO STRIP / LOCATION & HOURS
           ═══════════════════════════════════════ */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="glass rounded-2xl p-8 md:p-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section className="py-12 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="glass rounded-3xl p-8 sm:p-12 grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 border border-amber-500/20 shadow-2xl">
             {/* Location */}
-            <div className="text-center">
-              <span className="text-3xl mb-3 block">📍</span>
-              <h3 className="font-display text-xl text-white font-bold mb-2">
-                Visit Us
+            <div className="text-center flex flex-col items-center">
+              <div className="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-2xl mb-3.5 shadow-inner">
+                📍
+              </div>
+              <h3 className="font-display text-xl text-white font-bold mb-1.5">
+                Visit Our Restaurant
               </h3>
-              <p className="text-[var(--color-stone-light)] text-sm">
+              <p className="text-slate-300 text-sm leading-relaxed">
                 2161 Colorado Blvd
                 <br />
                 Los Angeles, CA 90041
                 <br />
-                <span className="text-[var(--color-stone)]">(Eagle Rock)</span>
+                <span className="text-amber-300 font-semibold">(Eagle Rock)</span>
               </p>
               <Link
                 href="/contact"
-                className="inline-block mt-3 text-sm text-[var(--color-accent-light)] hover:text-white transition-colors"
+                className="mt-3.5 text-sm font-semibold text-[var(--color-gold)] hover:text-white transition-colors"
               >
-                Get directions →
+                Get Directions →
               </Link>
             </div>
 
             {/* Hours */}
-            <div className="text-center border-y md:border-y-0 md:border-x border-white/5 py-8 md:py-0 md:px-8">
-              <span className="text-3xl mb-3 block">🕐</span>
-              <h3 className="font-display text-xl text-white font-bold mb-2">
-                Hours
+            <div className="text-center flex flex-col items-center border-y md:border-y-0 md:border-x border-white/10 py-7 md:py-0 md:px-8">
+              <div className="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-2xl mb-3.5 shadow-inner">
+                🕐
+              </div>
+              <h3 className="font-display text-xl text-white font-bold mb-1.5">
+                Operating Hours
               </h3>
-              <div className="text-[var(--color-stone-light)] text-sm space-y-1">
-                <p>Mon–Tue: 11am – 9pm</p>
-                <p className="text-[var(--color-primary-light)]">Wed: Closed</p>
-                <p>Thu–Sun: 11am – 9pm</p>
+              <div className="text-slate-300 text-sm space-y-1 font-medium">
+                <p>Sun–Tue: 11:00 AM – 8:30 PM</p>
+                <p className="text-red-400 font-semibold">Wednesday: Closed</p>
+                <p>Thu–Sat: 11:00 AM – 9:00 PM</p>
               </div>
             </div>
 
             {/* Contact */}
-            <div className="text-center">
-              <span className="text-3xl mb-3 block">📞</span>
-              <h3 className="font-display text-xl text-white font-bold mb-2">
-                Call Us
+            <div className="text-center flex flex-col items-center">
+              <div className="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-2xl mb-3.5 shadow-inner">
+                📞
+              </div>
+              <h3 className="font-display text-xl text-white font-bold mb-1.5">
+                Phone & Orders
               </h3>
               <a
                 href="tel:+13232556322"
-                className="text-[var(--color-gold)] text-lg font-semibold hover:text-white transition-colors"
+                className="text-[var(--color-gold)] text-xl font-bold hover:text-white transition-colors tracking-wide font-display"
               >
                 (323) 255-6322
               </a>
-              <p className="text-[var(--color-stone)] text-xs mt-2">
-                Dine-in · Takeout · Delivery
+              <p className="text-slate-400 text-xs mt-1.5 font-medium">
+                Dine-in · Takeout · Fast Delivery
               </p>
             </div>
           </div>
@@ -150,20 +165,29 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════
-          MENU TEASER
+          MENU TEASER & CTA
           ═══════════════════════════════════════ */}
-      <section className="py-16 bg-[var(--section-bg)]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-white mb-4">
-            Explore Our Full Menu
-          </h2>
-          <p className="text-[var(--color-stone-light)] mb-8 max-w-2xl mx-auto">
-            From our signature rotisserie chicken to fresh ceviches, hearty stews,
-            and classic Peruvian favorites — {categoryCount} dishes crafted with authentic flavors.
-          </p>
-          <Link href="/menu" className="btn-primary text-lg">
-            View Complete Menu
-          </Link>
+      <section className="py-20 relative">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center relative z-10">
+          <div className="glass-card rounded-3xl p-8 sm:p-12 border border-amber-500/25 shadow-2xl">
+            <span className="inline-block px-4 py-1 rounded-full text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-gold-light)] bg-amber-500/15 border border-amber-500/30 mb-3.5">
+              Tradición Peruana
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-white mb-3.5">
+              Explore Our Full Menu
+            </h2>
+            <p className="text-slate-300 mb-8 max-w-xl mx-auto leading-relaxed text-sm sm:text-base">
+              From our famous rotisserie chicken to savory lomo saltado, fresh ceviches, and sweet alfajores — over {categoryCount} dishes prepared with true Andean passion.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link href="/menu" className="btn-primary text-base w-full sm:w-auto">
+                View Complete Menu
+              </Link>
+              <Link href="/about" className="btn-secondary text-base w-full sm:w-auto">
+                Our Story & Heritage
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </>

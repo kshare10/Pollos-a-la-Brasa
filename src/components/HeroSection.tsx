@@ -1,98 +1,84 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import OrderModal from "@/components/OrderModal";
 
 export default function HeroSection() {
-
     return (
-        <section className="relative min-h-screen flex flex-col overflow-hidden">
-            {/* Background Image with Ken Burns animation */}
-            <div className="absolute inset-0 animate-kenBurns">
-                <Image
-                    src="/images/hero-banner.jpg"
-                    alt="Delicious Peruvian cuisine at Pollos a la Brasa"
-                    fill
-                    priority
-                    className="object-cover"
-                    sizes="100vw"
-                    quality={85}
-                />
-            </div>
-
-            {/* Dark cinematic overlay */}
-            <div className="absolute inset-0 hero-overlay" />
-
-            {/* Decorative warm glow accents */}
-            <div className="absolute top-20 left-10 w-40 h-40 rounded-full bg-[var(--color-accent)]/8 blur-3xl animate-float" />
+        <section className="relative min-h-[85vh] sm:min-h-[92vh] flex flex-col justify-between overflow-hidden">
+            {/* Ambient Andean Sun & Flame Glow Accents */}
+            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[320px] rounded-full bg-amber-500/10 blur-[100px] pointer-events-none" />
+            <div className="absolute bottom-20 left-10 w-60 h-60 rounded-full bg-red-600/10 blur-[80px] pointer-events-none animate-float" />
             <div
-                className="absolute bottom-40 right-10 w-56 h-56 rounded-full bg-[var(--color-primary)]/10 blur-3xl animate-float"
+                className="absolute top-32 right-10 w-64 h-64 rounded-full bg-amber-400/10 blur-[90px] pointer-events-none animate-float"
                 style={{ animationDelay: "2s" }}
             />
 
-            <div className="relative z-10 flex-grow flex flex-col justify-center max-w-5xl mx-auto px-4 sm:px-6 text-center pt-32 sm:pt-40 pb-12 sm:pb-32">
-                {/* Logo */}
-                <div className="animate-fadeInUp mb-6">
-                    <Image
-                        src="/images/updated_logo.png"
-                        alt="Pollos A La Brasa - Eagle Rock Peruvian Restaurant"
-                        width={180}
-                        height={180}
-                        className="mx-auto drop-shadow-2xl rounded-full ring-2 ring-[var(--color-gold)]/30"
-                        priority
-                    />
+            {/* Main Content Area */}
+            <div className="relative z-10 flex-grow flex flex-col justify-center max-w-5xl mx-auto px-4 sm:px-6 text-center pt-28 sm:pt-36 pb-12 sm:pb-16">
+                {/* Restaurant Logo */}
+                <div className="animate-fadeInUp mb-5">
+                    <div className="relative inline-block">
+                        <div className="absolute -inset-1.5 bg-gradient-to-r from-amber-500/30 via-red-500/20 to-amber-500/30 rounded-full blur-md" />
+                        <Image
+                            src="/images/updated_logo.png"
+                            alt="Pollos A La Brasa - Eagle Rock Peruvian Restaurant"
+                            width={160}
+                            height={160}
+                            className="relative mx-auto drop-shadow-2xl rounded-full ring-2 ring-[var(--color-gold)]/60 bg-[#090C12]/80 p-1"
+                            priority
+                        />
+                    </div>
                 </div>
 
-                {/* Location badge */}
+                {/* Andean Heritage Badge */}
                 <div className="animate-fadeInUp stagger-1" style={{ opacity: 0 }}>
-                    <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-[0.25em] text-[var(--color-gold)] border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/5 mb-6">
-                        Eagle Rock · Los Angeles
-                    </span>
+                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.22em] text-[var(--color-gold-light)] border border-[var(--color-gold)]/35 bg-[#0D121B]/80 backdrop-blur-md mb-5 shadow-lg shadow-black/40">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-gold)] animate-pulse" />
+                        Eagle Rock · Los Angeles · Since 2020
+                    </div>
                 </div>
 
-                {/* Title */}
+                {/* Hero Title */}
                 <h1
-                    className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-4 animate-fadeInUp stagger-2"
+                    className="font-display text-4xl sm:text-6xl md:text-7xl font-bold mb-3 tracking-tight animate-fadeInUp stagger-2 text-white drop-shadow-[0_4px_16px_rgba(0,0,0,0.85)]"
                     style={{ opacity: 0 }}
                 >
-                    <span className="text-white">Pollos</span>{" "}
+                    <span>Pollos</span>{" "}
                     <span className="text-gradient">a la Brasa</span>
                 </h1>
 
                 {/* Subtitle */}
                 <p
-                    className="text-lg sm:text-xl md:text-2xl text-[var(--color-cream)] max-w-2xl mx-auto mb-3 animate-fadeInUp stagger-3"
+                    className="text-lg sm:text-xl md:text-2xl text-[var(--color-cream)] max-w-2xl mx-auto mb-3 font-medium tracking-wide drop-shadow-md animate-fadeInUp stagger-3"
                     style={{ opacity: 0 }}
                 >
-                    Authentic Peruvian Rotisserie Chicken
+                    Authentic Peruvian Rotisserie Chicken & Andean Flavors
                 </p>
 
                 {/* Description */}
                 <p
-                    className="text-sm text-[var(--color-stone-light)] max-w-lg mx-auto mb-10 animate-fadeInUp stagger-4"
+                    className="text-sm sm:text-base text-slate-200/90 max-w-xl mx-auto mb-8 font-normal leading-relaxed drop-shadow animate-fadeInUp stagger-4"
                     style={{ opacity: 0 }}
                 >
-                    Serving the Eagle Rock community with traditional Peruvian flavors,
-                    wood-fired rotisserie chicken, and recipes passed down through
-                    generations.
+                    Bringing the rich culinary soul of Peru to Eagle Rock. Marinated with aromatic Andean spices and slow-roasted over wood embers to juicy, crispy perfection.
                 </p>
 
-                {/* CTA Buttons */}
+                {/* Action CTAs */}
                 <div
-                    className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12 animate-fadeInUp stagger-5"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10 animate-fadeInUp stagger-5"
                     style={{ opacity: 0 }}
                 >
-                    <Link href="/menu" className="btn-primary text-lg">
-                        View Our Menu
+                    <Link href="/menu" className="btn-primary text-base w-full sm:w-auto shadow-lg">
+                        Explore Full Menu
                     </Link>
-                    <OrderModal className="btn-secondary text-lg bg-amber-500/20 hover:bg-amber-500/30 border-amber-500/50 text-amber-100" />
+                    <OrderModal className="btn-secondary text-base w-full sm:w-auto shadow-md" />
                 </div>
 
-                {/* Food image showcase — 3 circular previews */}
+                {/* Food image showcase */}
                 <div
-                    className="flex items-center justify-center gap-4 sm:gap-6 animate-fadeInUp stagger-6"
+                    className="flex items-center justify-center gap-4 sm:gap-8 animate-fadeInUp stagger-6"
                     style={{ opacity: 0 }}
                 >
                     {[
@@ -117,16 +103,16 @@ export default function HeroSection() {
                             href="/menu"
                             className="group flex flex-col items-center gap-2"
                         >
-                            <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full overflow-hidden ring-2 ring-[var(--color-gold)]/40 group-hover:ring-[var(--color-gold)] transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-[var(--color-accent)]/20">
+                            <div className="relative w-18 h-18 sm:w-22 sm:h-22 md:w-24 md:h-24 rounded-full overflow-hidden ring-2 ring-[var(--color-gold)]/40 group-hover:ring-[var(--color-gold)]/80 transition-all duration-300 group-hover:scale-[1.03] shadow-xl shadow-black/60">
                                 <Image
                                     src={item.src}
                                     alt={item.alt}
                                     fill
-                                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                                    sizes="(max-width: 640px) 80px, (max-width: 768px) 96px, 112px"
+                                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                    sizes="(max-width: 640px) 72px, (max-width: 768px) 88px, 96px"
                                 />
                             </div>
-                            <span className="text-[10px] sm:text-xs text-[var(--color-stone-light)] group-hover:text-[var(--color-gold)] transition-colors uppercase tracking-wider font-medium mt-1">
+                            <span className="text-[11px] sm:text-xs text-slate-200 group-hover:text-[var(--color-gold-light)] transition-colors uppercase tracking-wider font-semibold mt-1 drop-shadow-md">
                                 {item.label}
                             </span>
                         </Link>
@@ -134,37 +120,9 @@ export default function HeroSection() {
                 </div>
             </div>
 
-            {/* Bottom info bar — glass overlay with essential info */}
-            <div className="relative z-10 w-full glass border-t border-[var(--color-gold)]/10 border-x-0 border-b-0 md:absolute md:bottom-0 md:left-0 md:right-0">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
-                    <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-                        {/* Address */}
-                        <div className="flex items-center gap-2">
-                            <span className="text-base">📍</span>
-                            <span className="text-xs sm:text-sm text-[var(--color-stone-light)]">
-                                2161 Colorado Blvd, Los Angeles, CA 90041
-                            </span>
-                        </div>
-
-                        {/* Phone */}
-                        <a
-                            href="tel:+13232556322"
-                            className="flex items-center gap-2 text-[var(--color-gold)] hover:text-white transition-colors"
-                        >
-                            <span className="text-base">📞</span>
-                            <span className="text-sm font-semibold">(323) 255-6322</span>
-                        </a>
-
-                        {/* Hours */}
-                        <div className="flex items-center gap-2">
-                            <span className="text-base">🕐</span>
-                            <span className="text-xs sm:text-sm text-[var(--color-stone-light)]">
-                                Open Daily 11am–9pm{" "}
-                                <span className="text-[var(--color-stone)]">(Wed Closed)</span>
-                            </span>
-                        </div>
-                    </div>
-                </div>
+            {/* Translucent horizontal divider distinguishing top hero from following section */}
+            <div className="relative z-10 w-full px-6 max-w-7xl mx-auto">
+                <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-amber-500/35 to-transparent" />
             </div>
         </section>
     );

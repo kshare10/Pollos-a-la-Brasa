@@ -51,7 +51,7 @@ export default function OrderModal({ className = "" }: { className?: string }) {
         <>
             <button
                 onClick={toggleModal}
-                className={`${className} flex items-center justify-center gap-2`}
+                className={`${className} flex items-center justify-center gap-2 cursor-pointer`}
                 aria-expanded={isOpen}
                 aria-haspopup="true"
             >
@@ -67,32 +67,32 @@ export default function OrderModal({ className = "" }: { className?: string }) {
                 >
                     {/* Backdrop */}
                     <div
-                        className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-fade-in"
+                        className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fade-in"
                         onClick={() => setIsOpen(false)}
                     />
 
                     {/* Modal Content */}
                     <div
                         ref={modalRef}
-                        className="relative w-full max-w-sm rounded-2xl bg-[var(--color-charcoal)] border border-[var(--color-gold)]/20 shadow-2xl p-8 animate-scale-in"
+                        className="relative w-full max-w-md rounded-3xl bg-[#090C12] border border-[var(--color-gold)]/30 shadow-2xl p-8 sm:p-10 animate-scale-in"
                     >
                         {/* Close Button */}
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="absolute top-4 right-4 text-[var(--color-stone)] hover:text-white transition-colors"
+                            className="absolute top-5 right-5 text-slate-400 hover:text-white transition-colors p-1"
                             aria-label="Close modal"
                         >
-                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>
                         </button>
 
                         <div className="text-center mb-8">
-                            <h2 className="font-display text-2xl font-bold text-white mb-2">
-                                Pickup / Delivery
+                            <h2 className="font-display text-3xl font-bold text-white mb-2">
+                                Pickup & Delivery
                             </h2>
-                            <p className="text-sm text-[var(--color-stone-light)]">
-                                Choose your preferred service
+                            <p className="text-base text-slate-300">
+                                Choose your preferred ordering service
                             </p>
                         </div>
 
@@ -103,7 +103,7 @@ export default function OrderModal({ className = "" }: { className?: string }) {
                                     href={service.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`group flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10 transition-all duration-300 hover:scale-[1.02] ${service.color}`}
+                                    className={`group flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 transition-all duration-200 hover:border-amber-500/50 ${service.color}`}
                                 >
                                     <div className="relative h-12 w-full flex-shrink-0">
                                         <Image
@@ -117,9 +117,9 @@ export default function OrderModal({ className = "" }: { className?: string }) {
                             ))}
                         </div>
 
-                        <div className="mt-6 text-center">
-                            <p className="text-xs text-[var(--color-stone-dark)]">
-                                External links open in new tab
+                        <div className="mt-8 text-center">
+                            <p className="text-xs text-slate-400">
+                                External delivery partners open in a new tab
                             </p>
                         </div>
                     </div>

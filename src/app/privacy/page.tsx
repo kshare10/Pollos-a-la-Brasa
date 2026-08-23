@@ -7,73 +7,62 @@ export const metadata = {
 
 export default function PrivacyPage() {
     return (
-        <div className="bg-[var(--color-charcoal)] min-h-screen pt-32 pb-16">
+        <div className="min-h-screen pt-32 pb-20 relative z-10">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h1 className="font-display text-4xl md:text-5xl font-bold text-[var(--color-gold)] mb-8 text-center">
-                    Privacy Policy
-                </h1>
+                <div className="text-center mb-10">
+                    <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-[0.25em] text-[var(--color-gold-light)] border border-[var(--color-gold)]/30 bg-[#0B0E14]/70 backdrop-blur-md mb-4">
+                        Legal Information
+                    </span>
+                    <h1 className="font-display text-4xl sm:text-5xl font-bold text-white mb-2">
+                        Privacy <span className="text-gradient">Policy</span>
+                    </h1>
+                </div>
 
-                <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 md:p-12 border border-white/10 text-[var(--color-stone-light)] space-y-6">
-                    <p className="text-sm text-[var(--color-stone)]">Last Updated: {new Date().getFullYear()}</p>
+                <div className="glass-card rounded-3xl p-8 sm:p-12 border border-amber-500/20 text-slate-200 space-y-6 shadow-2xl">
+                    <p className="text-xs text-[var(--color-gold-light)] uppercase tracking-wider font-semibold">Last Updated: {new Date().getFullYear()}</p>
 
                     <section>
-                        <h2 className="text-xl font-semibold text-white mb-3">1. Introduction</h2>
-                        <p>
-                            Welcome to Pollos a la Brasa ("we," "our," or "us"). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice or our practices with regard to your personal information, please contact us.
+                        <h2 className="text-xl font-bold text-white mb-2">1. Introduction</h2>
+                        <p className="text-sm sm:text-base leading-relaxed text-slate-300">
+                            Welcome to Pollos a la Brasa (&quot;we,&quot; &quot;our,&quot; or &quot;us&quot;). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about this privacy notice or our practices with regard to your personal information, please contact us.
                         </p>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-semibold text-white mb-3">2. Information We Collect</h2>
-                        <p>
+                        <h2 className="text-xl font-bold text-white mb-2">2. Information We Collect</h2>
+                        <p className="text-sm sm:text-base leading-relaxed text-slate-300">
                             We collect personal information that you voluntarily provide to us when you express an interest in obtaining information about us or our products and services, when you participate in activities on the website, or otherwise when you contact us.
                         </p>
-                        <ul className="list-disc pl-5 mt-2 space-y-1">
-                            <li>Names</li>
-                            <li>Phone numbers</li>
-                            <li>Email addresses</li>
-                            <li>Billing addresses (for online orders)</li>
+                        <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-300">
+                            <li>Names and contact details</li>
+                            <li>Phone numbers for orders</li>
+                            <li>Email addresses for promotions or inquiries</li>
+                            <li>Delivery addresses (for online orders)</li>
                         </ul>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-semibold text-white mb-3">3. How We Use Your Information</h2>
-                        <p>
-                            We use personal information collected via our website for a variety of business purposes described below:
+                        <h2 className="text-xl font-bold text-white mb-2">3. How We Use Your Information</h2>
+                        <p className="text-sm sm:text-base leading-relaxed text-slate-300">
+                            We use personal information collected via our website for authentic service delivery, including:
                         </p>
-                        <ul className="list-disc pl-5 mt-2 space-y-1">
-                            <li>To facilitate account creation and logon process.</li>
-                            <li>To fulfill and manage your orders.</li>
-                            <li>To post testimonials.</li>
-                            <li>To request feedback.</li>
-                            <li>To send you marketing and promotional communications.</li>
+                        <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-300">
+                            <li>Fulfilling and managing your takeout and delivery orders.</li>
+                            <li>Customer support and inquiries.</li>
+                            <li>Sending you updates and promotional communications when requested.</li>
                         </ul>
                     </section>
 
                     <section>
-                        <h2 className="text-xl font-semibold text-white mb-3">4. Sharing Your Information</h2>
-                        <p>
-                            We only share information with your consent, to comply with laws, to provide you with services, to protect your rights, or to fulfill business obligations.
+                        <h2 className="text-xl font-bold text-white mb-2">4. Contact Us</h2>
+                        <p className="text-sm sm:text-base leading-relaxed text-slate-300">
+                            If you have questions or comments about this policy, please reach out to us at:
                         </p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-xl font-semibold text-white mb-3">5. Cookie Policy</h2>
-                        <p>
-                            We may use cookies and similar tracking technologies (like web beacons and pixels) to access or store information. Specific information about how we use such technologies and how you can refuse certain cookies is set out in our Cookie Notice.
-                        </p>
-                    </section>
-
-                    <section>
-                        <h2 className="text-xl font-semibold text-white mb-3">6. Contact Us</h2>
-                        <p>
-                            If you have questions or comments about this notice, you may contact us by post at:
-                        </p>
-                        <address className="mt-2 not-italic">
+                        <address className="mt-2 not-italic text-sm text-[var(--color-gold)] font-medium">
                             Pollos a la Brasa<br />
                             2161 Colorado Blvd<br />
                             Los Angeles, CA 90041<br />
-                            United States
+                            (323) 255-6322
                         </address>
                     </section>
                 </div>
