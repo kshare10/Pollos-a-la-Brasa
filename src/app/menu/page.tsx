@@ -5,6 +5,7 @@ import { menuCategories } from "@/lib/menuData";
 import MenuSection from "@/components/MenuSection";
 import OrderModal from "@/components/OrderModal";
 import PromoModal from "@/components/PromoModal";
+import { trackMenuCategoryClick } from "@/lib/analytics";
 
 export default function MenuPage() {
     const [activeCategory, setActiveCategory] = useState(menuCategories[0].id);
@@ -24,8 +25,9 @@ export default function MenuPage() {
 
     const isManualScroll = useRef(false);
 
-    const scrollToCategory = (id: string) => {
+    const scrollToCategory = (id: string, categoryName: string) => {
         setActiveCategory(id);
+        trackMenuCategoryClick(categoryName, id);
         isManualScroll.current = true;
 
         const el = document.getElementById(id);
@@ -145,7 +147,7 @@ export default function MenuPage() {
                             <button
                                 key={cat.id}
                                 data-category={cat.id}
-                                onClick={() => scrollToCategory(cat.id)}
+                                onClick={() => scrollToCategory(cat.id, cat.nameEs)}
                                 className={`relative z-10 whitespace-nowrap px-4 py-2 rounded-lg text-sm font-semibold transition-colors duration-200 flex-shrink-0 cursor-pointer ${activeCategory === cat.id
                                     ? "text-white"
                                     : "text-slate-200 hover:text-white"

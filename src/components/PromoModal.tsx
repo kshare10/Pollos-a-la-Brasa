@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
+import { trackPromoInteraction } from "@/lib/analytics";
 
 interface PromoModalProps {
     isOpen: boolean;
@@ -10,16 +11,25 @@ interface PromoModalProps {
 
 export default function PromoModal({ isOpen, onClose }: PromoModalProps) {
     const modalRef = useRef<HTMLDivElement>(null);
+    const PROMO_NAME = "Chicken Combo 2-Liter Free Deal";
+
+    useEffect(() => {
+        if (isOpen) {
+            trackPromoInteraction("impression", PROMO_NAME);
+        }
+    }, [isOpen]);
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
             if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+                trackPromoInteraction("dismiss", PROMO_NAME);
                 onClose();
             }
         }
 
         function handleKeyDown(event: KeyboardEvent) {
             if (event.key === "Escape") {
+                trackPromoInteraction("dismiss", PROMO_NAME);
                 onClose();
             }
         }
@@ -41,6 +51,16 @@ export default function PromoModal({ isOpen, onClose }: PromoModalProps) {
         };
     }, [isOpen, onClose]);
 
+    const handleCtaClick = () => {
+        trackPromoInteraction("cta_click", PROMO_NAME);
+        onClose();
+    };
+
+    const handleCloseBtnClick = () => {
+        trackPromoInteraction("dismiss", PROMO_NAME);
+        onClose();
+    };
+
     if (!isOpen) return null;
 
     return createPortal(
@@ -52,7 +72,7 @@ export default function PromoModal({ isOpen, onClose }: PromoModalProps) {
             {/* Backdrop with smooth fade */}
             <div
                 className="absolute inset-0 bg-black/75 backdrop-blur-md transition-opacity duration-300 animate-fadeIn"
-                onClick={onClose}
+                onClick={handleCloseBtnClick}
             />
 
             {/* Modal Content Box */}
@@ -62,7 +82,7 @@ export default function PromoModal({ isOpen, onClose }: PromoModalProps) {
             >
                 {/* Close 'X' Button */}
                 <button
-                    onClick={onClose}
+                    onClick={handleCloseBtnClick}
                     className="absolute top-4 right-4 text-slate-400 hover:text-white hover:bg-white/10 p-2 rounded-full transition-all duration-200 cursor-pointer"
                     aria-label="Close promotion modal"
                 >
@@ -96,7 +116,7 @@ export default function PromoModal({ isOpen, onClose }: PromoModalProps) {
 
                 {/* Call-to-action Button to close */}
                 <button
-                    onClick={onClose}
+                    onClick={handleCtaClick}
                     className="w-full btn-primary justify-center text-base font-semibold tracking-wide py-3.5"
                 >
                     Great, Let&apos;s Order!

@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Image from "next/image";
 import "./globals.css";
 import Script from "next/script";
 import { Inter, Playfair_Display } from "next/font/google";
+import AnalyticsProvider from "@/components/AnalyticsProvider";
+import { GA_MEASUREMENT_ID } from "@/lib/analytics";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -67,8 +70,9 @@ export default function RootLayout({
           <div className="machu-bg-overlay" />
         </div>
 
+        {/* Google Analytics GA4 Scripts */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-8C73DDHRHL"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
           strategy="afterInteractive"
         />
         <Script
@@ -79,10 +83,19 @@ export default function RootLayout({
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
-              gtag('config', 'G-8C73DDHRHL');
+              gtag('config', '${GA_MEASUREMENT_ID}', {
+                page_path: window.location.pathname,
+                send_page_view: true
+              });
             `,
           }}
         />
+
+        {/* Client-Side Route, Scroll, Engagement & Click Tracker */}
+        <Suspense fallback={null}>
+          <AnalyticsProvider />
+        </Suspense>
+
         <Header />
         <main className="flex-1 relative z-10">{children}</main>
         <Footer />

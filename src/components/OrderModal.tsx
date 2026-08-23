@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import { trackOrderIntent } from "@/lib/analytics";
 
 export default function OrderModal({ className = "" }: { className?: string }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,14 @@ export default function OrderModal({ className = "" }: { className?: string }) {
         };
     }, [isOpen]);
 
-    const toggleModal = () => setIsOpen(!isOpen);
+    const handleOpenModal = () => {
+        setIsOpen(true);
+        trackOrderIntent("modal_open", undefined, "Order Button");
+    };
+
+    const handlePlatformClick = (platformName: string) => {
+        trackOrderIntent("platform_click", platformName, "Order Modal Platform Selection");
+    };
 
     const deliveryServices = [
         {
@@ -50,7 +58,7 @@ export default function OrderModal({ className = "" }: { className?: string }) {
     return (
         <>
             <button
-                onClick={toggleModal}
+                onClick={handleOpenModal}
                 className={`${className} flex items-center justify-center gap-2 cursor-pointer`}
                 aria-expanded={isOpen}
                 aria-haspopup="true"
@@ -67,19 +75,19 @@ export default function OrderModal({ className = "" }: { className?: string }) {
                 >
                     {/* Backdrop */}
                     <div
-                        className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fade-in"
+                        className="absolute inset-0 bg-black/70 backdrop-blur-sm animate-fadeIn"
                         onClick={() => setIsOpen(false)}
                     />
 
                     {/* Modal Content */}
                     <div
                         ref={modalRef}
-                        className="relative w-full max-w-md rounded-3xl bg-[#090C12] border border-[var(--color-gold)]/30 shadow-2xl p-8 sm:p-10 animate-scale-in"
+                        className="relative w-full max-w-md rounded-3xl bg-[#090C12] border border-[var(--color-gold)]/30 shadow-2xl p-8 sm:p-10 animate-fadeInUp"
                     >
                         {/* Close Button */}
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="absolute top-5 right-5 text-slate-400 hover:text-white transition-colors p-1"
+                            className="absolute top-5 right-5 text-slate-400 hover:text-white transition-colors p-1 cursor-pointer"
                             aria-label="Close modal"
                         >
                             <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -103,6 +111,7 @@ export default function OrderModal({ className = "" }: { className?: string }) {
                                     href={service.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    onClick={() => handlePlatformClick(service.name)}
                                     className={`group flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 transition-all duration-200 hover:border-amber-500/50 ${service.color}`}
                                 >
                                     <div className="relative h-12 w-full flex-shrink-0">
